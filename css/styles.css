@@ -15,6 +15,7 @@ body {
 .panels {
   min-height:100vh;
   overflow: hidden;
+  display: flex;
 }
 
 .panel {
@@ -32,6 +33,11 @@ body {
   font-size: 20px;
   background-size:cover;
   background-position:center;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -40,12 +46,21 @@ body {
 .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
 .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
 .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
-
+/*Flex items */
 .panel > * {
   margin:0;
   width: 100%;
   transition:transform 0.5s;
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.panel > *:first-child { transform: translateY(-100%); } /* out of view */
+.panel.open-active > *:first-child { transform: translateY(0); } /*bring it back */
+
+.panel > *:last-child{ transform: translateY(100%); } /* out of view */
+.panel.open-active > *:last-child{ transform: translateY(0); } /*bring it back */
 
 .panel p {
   text-transform: uppercase;
@@ -58,5 +73,6 @@ body {
 }
 
 .panel.open {
+  flex: 5; /*It's going to take 5 times the space of the extra room respect others. Others are 1 (see .panel) */
   font-size:40px;
 }
